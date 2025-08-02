@@ -100,6 +100,23 @@
             <p class="text-gray-600">Orientez-vous vers la Kaaba à La Mecque</p>
         </div>
         
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Entrez votre position:</label>
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1">Latitude</label>
+                    <input type="number" id="latitude" class="w-full p-2 border rounded" placeholder="Ex: 48.8566" step="0.0001">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1">Longitude</label>
+                    <input type="number" id="longitude" class="w-full p-2 border rounded" placeholder="Ex: 2.3522" step="0.0001">
+                </div>
+            </div>
+            <button id="set-position" class="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
+                Définir la position
+            </button>
+        </div>
+        
         <div class="compass mb-6">
             <div class="compass-inner">
                 <div class="compass-arrow"></div>
@@ -114,7 +131,7 @@
             <div class="flex items-center mb-2">
                 <i class="fas fa-location-arrow text-blue-500 mr-2"></i>
                 <span class="font-semibold">Votre position:</span>
-                <span id="location" class="ml-2 text-gray-700">Détection en cours...</span>
+                <span id="location" class="ml-2 text-gray-700">Non définie</span>
             </div>
             <div class="flex items-center">
                 <i class="fas fa-compass text-green-600 mr-2"></i>
@@ -124,14 +141,17 @@
         </div>
         
         <div class="flex justify-center">
-            <button id="reload-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg flex items-center">
+            <button id="use-current-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg flex items-center mr-2">
+                <i class="fas fa-location-arrow mr-2"></i> Position actuelle
+            </button>
+            <button id="reload-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg flex items-center">
                 <i class="fas fa-sync-alt mr-2"></i> Actualiser
             </button>
         </div>
     </div>
     
     <div class="mt-6 text-center text-gray-500 text-sm">
-        <p>Cette application utilise la géolocalisation de votre appareil pour calculer la direction de la Qibla.</p>
+        <p>Entrez manuellement votre position ou utilisez la géolocalisation si disponible.</p>
     </div>
 
     <script>
@@ -141,6 +161,10 @@
             const locationDisplay = document.getElementById('location');
             const qiblaDirectionDisplay = document.getElementById('qibla-direction');
             const reloadBtn = document.getElementById('reload-btn');
+            const useCurrentBtn = document.getElementById('use-current-btn');
+            const setPositionBtn = document.getElementById('set-position');
+            const latitudeInput = document.getElementById('latitude');
+            const longitudeInput = document.getElementById('longitude');
             const compassMarkers = document.getElementById('compass-markers');
             
             // Create compass markers
@@ -227,6 +251,21 @@
                         `${currentPosition.coords.latitude.toFixed(4)}, ${currentPosition.coords.longitude.toFixed(4)}`;
                     
                     qiblaDirectionDisplay.textContent = `${Math.round(qiblaDirection)}° ${getCardinalDirection(qiblaDirection)}`;
+                } else if (currentPosition) {
+                    // Only position is available (no compass)
+                    const qiblaDirection = calculateQiblaDirection(
+                        currentPosition.coords.latitude, 
+                        currentPosition.coords.longitude
+                    );
+                    
+                    locationDisplay.textContent = 
+                        `${currentPosition.coords.latitude.toFixed(4)}, ${currentPosition.coords.longitude.toFixed(4)}`;
+                    
+                    qiblaDirectionDisplay.textContent = `${Math.round(qiblaDirection)}° ${getCardinalDirection(qiblaDirection)}`;
+                    
+                    // Show Qibla direction as if facing North
+                    qiblaIndicator.style.transform = `rotate(${qiblaDirection}deg)`;
+                    compass.style.transform = `rotate(0deg)`;
                 }
             }
             
@@ -263,22 +302,40 @@
                 }
             }
             
-            // Initialize
-            getLocation();
+            // Set manual position
+            function setManualPosition() {
+                const lat = parseFloat(latitudeInput.value);
+                const lng = parseFloat(longitudeInput.value);
+                
+                if (isNaN(lat) || isNaN(lng)) {
+                    alert("Veuillez entrer des coordonnées valides");
+                    return;
+                }
+                
+                currentPosition = {
+                    coords: {
+                        latitude: lat,
+                        longitude: lng
+                    }
+                };
+                
+                updateCompass();
+            }
+            
+            // Initialize with default position (Paris)
+            latitudeInput.value = "48.8566";
+            longitudeInput.value = "2.3522";
             
             // Add event listeners
+            setPositionBtn.addEventListener('click', setManualPosition);
+            useCurrentBtn.addEventListener('click', getLocation);
+            reloadBtn.addEventListener('click', updateCompass);
+            
             if (window.DeviceOrientationEvent) {
                 window.addEventListener('deviceorientation', handleOrientation);
             } else {
                 console.log("L'orientation de l'appareil n'est pas supportée");
             }
-            
-            reloadBtn.addEventListener('click', function() {
-                getLocation();
-                if (window.DeviceOrientationEvent) {
-                    window.addEventListener('deviceorientation', handleOrientation);
-                }
-            });
             
             // Check for permission on iOS 13+
             function checkPermission() {
@@ -294,7 +351,7 @@
             }
             
             // For iOS, we need to request permission on user gesture
-            reloadBtn.addEventListener('click', checkPermission);
+            useCurrentBtn.addEventListener('click', checkPermission);
         });
     </script>
 </body>
