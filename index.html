@@ -3,373 +3,611 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Direction de la Qibla</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ANSAR ALMOUYASSAR </title>
     <style>
-        .compass {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            position: relative;
-            background: #f5f5f5;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        :root {
+            --primary: #1a5e1a;
+            --secondary: #f8f1e5;
+            --accent: #d4af37;
+            --text: #333;
+            --light: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
-            transition: transform 0.1s ease;
-            border: 4px solid #f5f5f5;
         }
         
-        .compass.qibla-aligned {
-            border-color: #38a169;
-            box-shadow: 0 0 20px rgba(56, 161, 105, 0.5);
-        }
-        
-        .compass-inner {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
+        .header-content {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
         
-        .compass-arrow {
-            width: 40px;
-            height: 40px;
-            background-color: #e53e3e;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('mosque-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light);
+        }
+        
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
             position: absolute;
-            top: 10px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 10;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
         }
         
-        .compass-markers {
-            position: absolute;
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .teachers {
+            background-color: var(--light);
+        }
+        
+        .teacher-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .teacher-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .teacher-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .teacher-img img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        .compass-marker {
-            position: absolute;
-            width: 2px;
-            height: 15px;
-            background: #333;
-            left: 50%;
-            transform-origin: bottom center;
+        .teacher-card:hover .teacher-img img {
+            transform: scale(1.1);
         }
         
-        .compass-cardinal {
-            position: absolute;
+        .teacher-info {
+            padding: 20px;
+        }
+        
+        .teacher-info h3 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .teacher-info p {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .contact {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .contact .section-title h2 {
+            color: var(--light);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255,255,255,0.9);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        .submit-btn {
+            background-color: var(--accent);
+            color: var(--primary);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
             font-weight: bold;
-            color: #333;
-            font-size: 16px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
         
-        .qibla-indicator {
-            position: absolute;
-            width: 4px;
-            height: 100px;
-            background-color: #38a169;
-            left: 50%;
-            bottom: 50%;
-            transform-origin: bottom center;
-            z-index: 5;
+        .submit-btn:hover {
+            background-color: var(--light);
         }
         
-        .qibla-label {
-            position: absolute;
-            color: #38a169;
-            font-weight: bold;
-            transform: translate(-50%, -120%);
-            white-space: nowrap;
-            font-size: 14px;
+        footer {
+            background-color: #111;
+            color: var(--light);
+            padding: 50px 0 20px;
+            text-align: center;
         }
         
-        .accuracy-indicator {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #e53e3e;
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: var(--light);
             border-radius: 50%;
-            left: 50%;
-            bottom: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
         
-        @media (max-width: 640px) {
-            .compass {
-                width: 250px;
-                height: 250px;
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
             }
             
-            .qibla-indicator {
-                height: 80px;
+            .logo {
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
-    <div class="max-w-md w-full bg-white rounded-xl shadow-lg overflow-hidden p-6">
-        <div class="text-center mb-6">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Direction de la Qibla</h1>
-            <p class="text-gray-600">Orientez-vous vers la Kaaba à La Mecque</p>
-        </div>
-        
-        <div class="compass mb-6" id="compass">
-            <div class="compass-inner">
-                <div class="compass-arrow"></div>
-                <div class="compass-markers" id="compass-markers"></div>
-                <div class="qibla-indicator" id="qibla-indicator">
-                    <span class="qibla-label">Qibla</span>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="logo.png" alt="ANSAR ALMOUYASSAR Logo">
+                <div class="logo-text">
+                    <h1>ANSAR ALMOUYASSAR</h1>
+                    <p> Cour en ligne </p>
                 </div>
-                <div class="accuracy-indicator" id="accuracy-indicator"></div>
             </div>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#apropos">À Propos</a></li>
+                    <li><a href="#cours">Nos Cours</a></li>
+                    <li><a href="#enseignants">Enseignants</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        
-        <div class="bg-blue-50 rounded-lg p-4 mb-6">
-            <div class="flex items-center mb-2">
-                <i class="fas fa-location-arrow text-blue-500 mr-2"></i>
-                <span class="font-semibold">Votre position:</span>
-                <span id="location" class="ml-2 text-gray-700">Détection en cours...</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <i class="fas fa-compass text-green-600 mr-2"></i>
-                <span class="font-semibold">Direction Qibla:</span>
-                <span id="qibla-direction" class="ml-2 text-gray-700">Calcul...</span>
-            </div>
-            <div class="flex items-center">
-                <i class="fas fa-bullseye text-red-500 mr-2"></i>
-                <span class="font-semibold">Précision:</span>
-                <span id="accuracy" class="ml-2 text-gray-700">-</span>
-            </div>
-        </div>
-        
-        <div class="flex justify-center">
-            <button id="reload-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg flex items-center">
-                <i class="fas fa-sync-alt mr-2"></i> Actualiser
-            </button>
-        </div>
-    </div>
-    
-    <div class="mt-6 text-center text-gray-500 text-sm">
-        <p>Tournez votre téléphone pour aligner le marqueur Qibla avec le haut de l'écran.</p>
-        <p>Le cercle deviendra vert lorsque vous serez correctement orienté.</p>
-    </div>
+    </header>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const compassElement = document.getElementById('compass');
-            const qiblaIndicator = document.getElementById('qibla-indicator');
-            const locationDisplay = document.getElementById('location');
-            const qiblaDirectionDisplay = document.getElementById('qibla-direction');
-            const reloadBtn = document.getElementById('reload-btn');
-            const accuracyDisplay = document.getElementById('accuracy');
-            const accuracyIndicator = document.getElementById('accuracy-indicator');
-            const compassMarkers = document.getElementById('compass-markers');
-            
-            // Create compass markers
-            for (let i = 0; i < 360; i += 15) {
-                const marker = document.createElement('div');
-                marker.className = 'compass-marker';
-                marker.style.transform = `rotate(${i}deg)`;
-                
-                if (i % 90 === 0) {
-                    const cardinal = document.createElement('div');
-                    cardinal.className = 'compass-cardinal';
-                    let direction;
-                    
-                    if (i === 0) direction = 'N';
-                    else if (i === 90) direction = 'E';
-                    else if (i === 180) direction = 'S';
-                    else if (i === 270) direction = 'O';
-                    
-                    cardinal.textContent = direction;
-                    cardinal.style.transform = `rotate(${-i}deg)`;
-                    
-                    // Position the cardinal points
-                    const angleRad = (i * Math.PI) / 180;
-                    const radius = 120;
-                    const x = radius * Math.sin(angleRad);
-                    const y = -radius * Math.cos(angleRad);
-                    
-                    cardinal.style.left = `calc(50% + ${x}px)`;
-                    cardinal.style.top = `calc(50% + ${y}px)`;
-                    
-                    marker.style.height = '25px';
-                    marker.style.backgroundColor = '#e53e3e';
-                    
-                    compassMarkers.appendChild(cardinal);
-                }
-                
-                compassMarkers.appendChild(marker);
-            }
-            
-            let currentPosition = null;
-            let currentHeading = null;
-            let qiblaDirection = null;
-            let watchId = null;
-            
-            // Correct calculation of Qibla direction
-            function calculateQiblaDirection(lat, lng) {
-                // Kaaba coordinates (verified)
-                const kaabaLat = 21.422487;
-                const kaabaLng = 39.826206;
-                
-                const φ1 = lat * Math.PI / 180;
-                const φ2 = kaabaLat * Math.PI / 180;
-                const Δλ = (kaabaLng - lng) * Math.PI / 180;
-                
-                const y = Math.sin(Δλ) * Math.cos(φ2);
-                const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
-                let θ = Math.atan2(y, x);
-                
-                // Convert from radians to degrees and normalize to 0-360
-                const bearing = ((θ * 180 / Math.PI) + 360) % 360;
-                
-                return bearing;
-            }
-            
-            // Update compass display
-            function updateCompass() {
-                if (currentPosition && currentHeading !== null && qiblaDirection !== null) {
-                    // Adjust for device orientation (corrected calculation)
-                    const adjustedDirection = (360 - currentHeading + qiblaDirection) % 360;
-                    
-                    // Position the Qibla indicator
-                    qiblaIndicator.style.transform = `rotate(${adjustedDirection}deg)`;
-                    
-                    // Rotate the compass to show current heading
-                    compassElement.style.transform = `rotate(${currentHeading}deg)`;
-                    
-                    // Update text displays
-                    locationDisplay.textContent = 
-                        `${currentPosition.coords.latitude.toFixed(4)}, ${currentPosition.coords.longitude.toFixed(4)}`;
-                    
-                    qiblaDirectionDisplay.textContent = `${Math.round(qiblaDirection)}° ${getCardinalDirection(qiblaDirection)}`;
-                    
-                    // Check if we're aligned with Qibla (within 5 degrees)
-                    const alignmentThreshold = 5;
-                    const alignmentDiff = Math.min(
-                        Math.abs(adjustedDirection - 0),
-                        Math.abs(adjustedDirection - 360)
-                    );
-                    
-                    if (alignmentDiff <= alignmentThreshold) {
-                        compassElement.classList.add('qibla-aligned');
-                        accuracyIndicator.style.backgroundColor = '#38a169';
-                    } else {
-                        compassElement.classList.remove('qibla-aligned');
-                        accuracyIndicator.style.backgroundColor = '#e53e3e';
-                    }
-                    
-                    // Update accuracy display
-                    if (currentPosition.coords.accuracy) {
-                        accuracyDisplay.textContent = `${Math.round(currentPosition.coords.accuracy)} mètres`;
-                        
-                        // Visual accuracy indicator (size changes based on accuracy)
-                        const accuracySize = Math.min(30, Math.max(10, currentPosition.coords.accuracy / 10));
-                        accuracyIndicator.style.width = `${accuracySize}px`;
-                        accuracyIndicator.style.height = `${accuracySize}px`;
-                    }
-                }
-            }
-            
-            // Get cardinal direction from degrees
-            function getCardinalDirection(angle) {
-                const directions = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'];
-                return directions[Math.round(angle / 45) % 8];
-            }
-            
-            // Handle device orientation (corrected for mobile devices)
-            function handleOrientation(event) {
-                if (event.alpha !== null) {
-                    // Correct for different device orientations
-                    let alpha = event.alpha; // compass direction (0-360)
-                    
-                    // Some devices might need adjustment
-                    if (window.orientation === 90) {
-                        alpha = (alpha + 90) % 360;
-                    } else if (window.orientation === -90 || window.orientation === 270) {
-                        alpha = (alpha - 90) % 360;
-                    } else if (window.orientation === 180) {
-                        alpha = (alpha + 180) % 360;
-                    }
-                    
-                    currentHeading = alpha;
-                    updateCompass();
-                }
-            }
-            
-            // Get current position with high accuracy
-            function getLocation() {
-                if (navigator.geolocation) {
-                    // Stop any existing watcher
-                    if (watchId) {
-                        navigator.geolocation.clearWatch(watchId);
-                    }
-                    
-                    // Start new watcher for continuous updates
-                    watchId = navigator.geolocation.watchPosition(
-                        function(position) {
-                            currentPosition = position;
-                            qiblaDirection = calculateQiblaDirection(
-                                position.coords.latitude, 
-                                position.coords.longitude
-                            );
-                            updateCompass();
-                        },
-                        function(error) {
-                            console.error("Erreur de géolocalisation:", error);
-                            locationDisplay.textContent = "Erreur de géolocalisation";
-                        },
-                        { 
-                            enableHighAccuracy: true,
-                            maximumAge: 10000,
-                            timeout: 5000
-                        }
-                    );
-                } else {
-                    locationDisplay.textContent = "Géolocalisation non supportée";
-                }
-            }
-            
-            // Initialize
-            getLocation();
-            
-            // Add event listeners
-            if (window.DeviceOrientationEvent) {
-                // Request permission on iOS 13+
-                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-                    reloadBtn.addEventListener('click', function() {
-                        DeviceOrientationEvent.requestPermission()
-                            .then(permissionState => {
-                                if (permissionState === 'granted') {
-                                    window.addEventListener('deviceorientation', handleOrientation);
-                                    getLocation();
-                                }
-                            })
-                            .catch(console.error);
-                    });
-                } else {
-                    // Standard browsers
-                    window.addEventListener('deviceorientation', handleOrientation);
-                }
-            } else {
-                console.log("L'orientation de l'appareil n'est pas supportée");
-            }
-            
-            reloadBtn.addEventListener('click', function() {
-                getLocation();
-                if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') {
-                    window.addEventListener('deviceorientation', handleOrientation);
-                }
-            });
-        });
-    </script>
+    <section class="hero" id="accueil">
+        <div class="container hero-content">
+            <div>
+                <h2>Apprenez le Coran avec des enseignants qualifiés</h2>
+                <p>Découvrez notre plateforme d'enseignement du Coran en ligne adaptée à tous les niveaux, depuis Dakar vers le monde entier.</p>
+                <a href="#cours" class="btn">Commencer maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="apropos">
+        <div class="container">
+            <div class="section-title">
+                <h2>À Propos de Nous</h2>
+            </div>
+            <div class="about-content">
+                <p>ANSAR ALMOUYASSAR est une association basée à Dakar dédiée à l'enseignement du Saint Coran selon les règles du Tajwid. Notre mission est de rendre l'apprentissage du Coran accessible à tous, partout dans le monde, grâce à notre plateforme en ligne.</p>
+                <p>Fondée en 2023, notre association compte aujourd'hui une équipe d'enseignants qualifiés et expérimentés qui ont formé des centaines d'étudiants à travers le monde. Nous nous engageons à fournir un enseignement de qualité dans le respect des valeurs islamiques.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="cours">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Cours</h2>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-quran"></i>
+                    </div>
+                    <h3>Apprentissage du Coran</h3>
+                    <p>Mémorisation (Hifz) et récitation correcte du Coran avec les règles de Tajwid pour tous les niveaux, des débutants aux avancés.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3>Tajwid Perfection</h3>
+                    <p>Maîtrise des règles de prononciation et d'articulation pour une récitation parfaite du Coran selon la tradition prophétique.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Programme Enfants</h3>
+                    <p>Méthodes pédagogiques adaptées aux enfants pour un apprentissage ludique et efficace du Coran dès le plus jeune âge.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Tafsir & Sciences Coraniques</h3>
+                    <p>Étude des exégèses du Coran et des sciences connexes pour une compréhension approfondie du Livre Sacré.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Coran & Langue Arabe</h3>
+                    <p>Combinaison de l'apprentissage du Coran avec l'étude de la langue arabe pour une meilleure compréhension des textes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Programme Professionnel</h3>
+                    <p>Formation intensive pour ceux qui souhaitent devenir enseignants du Coran ou imams, avec diplôme à la clé.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section teachers" id="enseignants">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Enseignants</h2>
+            </div>
+            <div class="teacher-grid">
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <img src="teacher1.jpg" alt="Cheikh Modou">
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Cheikh Modou Ndiaye</h3>
+                        <p>Spécialiste en Tajwid et Qira'at</p>
+                        <p>20 ans d'expérience</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <img src="teacher2.jpg" alt="Cheikh Abdou">
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Cheikh Abdou Fall</h3>
+                        <p>Expert en Hifz (mémorisation)</p>
+                        <p>Hafiz depuis 15 ans</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <img src="teacher3.jpg" alt="Oustada Aïcha">
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Oustada Aïcha Diop</h3>
+                        <p>Spécialiste des programmes enfants</p>
+                        <p>Pédagogue certifiée</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-img">
+                        <img src="teacher4.jpg" alt="Cheikh Mamadou">
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Cheikh Mamadou Lô</h3>
+                        <p>Expert en Tafsir et Sciences Coraniques</p>
+                        <p>Diplômé de l'Université Islamique de Médine</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contactez-Nous</h2>
+            </div>
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nom Complet</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone (WhatsApp)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Cours Intéressé</label>
+                        <select id="course" name="course">
+                            <option value="">Sélectionnez un cours</option>
+                            <option value="apprentissage">Apprentissage du Coran</option>
+                            <option value="tajwid">Tajwid Perfection</option>
+                            <option value="enfants">Programme Enfants</option>
+                            <option value="tafsir">Tafsir & Sciences Coraniques</option>
+                            <option value="arabe">Coran & Langue Arabe</option>
+                            <option value="pro">Programme Professionnel</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ANSAR ALMOUYASSAR</h3>
+                    <p>Association pour l'enseignement du Coran selon les règles du Tajwid, basée à Dakar, Sénégal.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens Rapides</h3>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#apropos">À Propos</a></li>
+                        <li><a href="#cours">Nos Cours</a></li>
+                        <li><a href="#enseignants">Enseignants</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</li>
+                        <li><i class="fas fa-phone"></i> +221 77 123 45 67</li>
+                        <li><i class="fas fa-envelope"></i> contact@ansaralmouyassar.sn</li>
+                        <li><i class="fas fa-clock"></i> Lun-Ven: 8h-18h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 ANSAR ALMOUYASSAR. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
