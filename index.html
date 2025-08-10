@@ -3,611 +3,630 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANSAR ALMOUYASSAR </title>
+    <title>Ansar Al Mouyassar - Cours de Coran en ligne</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #1a5e1a;
-            --secondary: #f8f1e5;
-            --accent: #d4af37;
-            --text: #333;
-            --light: #fff;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap');
         
         body {
-            background-color: var(--secondary);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
         }
         
-        header {
-            background-color: var(--primary);
-            color: var(--light);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 60px;
-            margin-right: 15px;
-        }
-        
-        .logo-text h1 {
+        .arabic-text {
+            font-family: 'Amiri', serif;
             font-size: 1.5rem;
-            margin-bottom: 5px;
+            line-height: 2.5rem;
+            direction: rtl;
         }
         
-        .logo-text p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 20px;
-        }
-        
-        nav ul li a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-        
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('mosque-bg.jpg');
+        .hero-pattern {
+            background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
             background-size: cover;
             background-position: center;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--light);
+            background-blend-mode: overlay;
         }
         
-        .hero-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--primary);
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent);
-        }
-        
-        .btn:hover {
-            background-color: transparent;
-            color: var(--accent);
-        }
-        
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2rem;
-            color: var(--primary);
+        .video-container {
             position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
         }
         
-        .section-title h2::after {
-            content: '';
+        .video-container iframe {
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent);
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background-color: var(--light);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .teachers {
-            background-color: var(--light);
-        }
-        
-        .teacher-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .teacher-card {
-            background-color: var(--secondary);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        
-        .teacher-img {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .teacher-img img {
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
         }
         
-        .teacher-card:hover .teacher-img img {
-            transform: scale(1.1);
-        }
-        
-        .teacher-info {
-            padding: 20px;
-        }
-        
-        .teacher-info h3 {
-            margin-bottom: 5px;
-            color: var(--primary);
-        }
-        
-        .teacher-info p {
-            color: #666;
-            font-style: italic;
-        }
-        
-        .contact {
-            background-color: var(--primary);
-            color: var(--light);
-        }
-        
-        .contact .section-title h2 {
-            color: var(--light);
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            border: none;
-            background-color: rgba(255,255,255,0.9);
-        }
-        
-        .form-group textarea {
-            height: 150px;
-        }
-        
-        .submit-btn {
-            background-color: var(--accent);
-            color: var(--primary);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .submit-btn:hover {
-            background-color: var(--light);
-        }
-        
-        footer {
-            background-color: #111;
-            color: var(--light);
-            padding: 50px 0 20px;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-        
-        .footer-column h3 {
-            color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-column ul li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: #333;
-            color: var(--light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--accent);
-            color: var(--primary);
+        .schedule-item:hover {
             transform: translateY(-5px);
-        }
-        
-        .copyright {
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            font-size: 0.9rem;
-            color: #999;
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .logo {
-                margin-bottom: 20px;
-                justify-content: center;
-            }
-            
-            nav ul {
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 0 10px;
-            }
-            
-            .hero-content h2 {
-                font-size: 2rem;
-            }
-            
-            .hero-content p {
-                font-size: 1rem;
-            }
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <img src="logo.png" alt="ANSAR ALMOUYASSAR Logo">
-                <div class="logo-text">
-                    <h1>ANSAR ALMOUYASSAR</h1>
-                    <p> Cour en ligne </p>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-green-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-mosque text-2xl"></i>
+                <div>
+                    <h1 class="text-xl font-bold">Ansar Al Mouyassar</h1>
+                    <p class="text-xs">Dakar, Sénégal</p>
                 </div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#apropos">À Propos</a></li>
-                    <li><a href="#cours">Nos Cours</a></li>
-                    <li><a href="#enseignants">Enseignants</a></li>
-                    <li><a href="#contact">Contact</a></li>
+            
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="#accueil" class="hover:text-yellow-300 transition">Accueil</a></li>
+                    <li><a href="#cours" class="hover:text-yellow-300 transition">Cours</a></li>
+                    <li><a href="#horaires" class="hover:text-yellow-300 transition">Horaires</a></li>
+                    <li><a href="#enseignants" class="hover:text-yellow-300 transition">Enseignants</a></li>
+                    <li><a href="#contact" class="hover:text-yellow-300 transition">Contact</a></li>
                 </ul>
             </nav>
+            
+            <button class="md:hidden text-xl" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-green-700" id="mobile-menu">
+            <ul class="px-4 py-2 space-y-2">
+                <li><a href="#accueil" class="block py-2 hover:text-yellow-300 transition">Accueil</a></li>
+                <li><a href="#cours" class="block py-2 hover:text-yellow-300 transition">Cours</a></li>
+                <li><a href="#horaires" class="block py-2 hover:text-yellow-300 transition">Horaires</a></li>
+                <li><a href="#enseignants" class="block py-2 hover:text-yellow-300 transition">Enseignants</a></li>
+                <li><a href="#contact" class="block py-2 hover:text-yellow-300 transition">Contact</a></li>
+            </ul>
         </div>
     </header>
 
-    <section class="hero" id="accueil">
-        <div class="container hero-content">
-            <div>
-                <h2>Apprenez le Coran avec des enseignants qualifiés</h2>
-                <p>Découvrez notre plateforme d'enseignement du Coran en ligne adaptée à tous les niveaux, depuis Dakar vers le monde entier.</p>
-                <a href="#cours" class="btn">Commencer maintenant</a>
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-pattern bg-green-900 bg-opacity-70 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Apprendre le Coran en ligne</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">L'association Ansar Al Mouyassar vous propose des cours de Coran de qualité depuis Dakar</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#cours" class="bg-yellow-500 hover:bg-yellow-600 text-green-900 font-bold py-3 px-6 rounded-lg transition duration-300">
+                    Voir les cours
+                </a>
+                <a href="#contact" class="bg-transparent hover:bg-green-800 text-white font-bold py-3 px-6 border-2 border-white rounded-lg transition duration-300">
+                    S'inscrire
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="section" id="apropos">
-        <div class="container">
-            <div class="section-title">
-                <h2>À Propos de Nous</h2>
-            </div>
-            <div class="about-content">
-                <p>ANSAR ALMOUYASSAR est une association basée à Dakar dédiée à l'enseignement du Saint Coran selon les règles du Tajwid. Notre mission est de rendre l'apprentissage du Coran accessible à tous, partout dans le monde, grâce à notre plateforme en ligne.</p>
-                <p>Fondée en 2023, notre association compte aujourd'hui une équipe d'enseignants qualifiés et expérimentés qui ont formé des centaines d'étudiants à travers le monde. Nous nous engageons à fournir un enseignement de qualité dans le respect des valeurs islamiques.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="cours">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nos Cours</h2>
-            </div>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-book-quran"></i>
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h2 class="text-3xl font-bold text-green-800 mb-4">À propos de notre association</h2>
+                    <p class="text-gray-700 mb-4">
+                        L'association Ansar Al Mouyassar, basée à Dakar au Sénégal, a pour mission de faciliter l'apprentissage du Saint Coran à travers des cours en ligne accessibles à tous.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Nos enseignants qualifiés accompagnent les étudiants dans leur mémorisation et leur compréhension du Coran, avec une pédagogie adaptée à chaque niveau.
+                    </p>
+                    <div class="flex items-center mt-6">
+                        <i class="fas fa-star text-yellow-400 mr-2"></i>
+                        <span class="font-semibold">Enseignement de qualité</span>
                     </div>
-                    <h3>Apprentissage du Coran</h3>
-                    <p>Mémorisation (Hifz) et récitation correcte du Coran avec les règles de Tajwid pour tous les niveaux, des débutants aux avancés.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-microphone-alt"></i>
+                    <div class="flex items-center mt-2">
+                        <i class="fas fa-users text-green-600 mr-2"></i>
+                        <span class="font-semibold">Communauté bienveillante</span>
                     </div>
-                    <h3>Tajwid Perfection</h3>
-                    <p>Maîtrise des règles de prononciation et d'articulation pour une récitation parfaite du Coran selon la tradition prophétique.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-child"></i>
-                    </div>
-                    <h3>Programme Enfants</h3>
-                    <p>Méthodes pédagogiques adaptées aux enfants pour un apprentissage ludique et efficace du Coran dès le plus jeune âge.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Tafsir & Sciences Coraniques</h3>
-                    <p>Étude des exégèses du Coran et des sciences connexes pour une compréhension approfondie du Livre Sacré.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-language"></i>
-                    </div>
-                    <h3>Coran & Langue Arabe</h3>
-                    <p>Combinaison de l'apprentissage du Coran avec l'étude de la langue arabe pour une meilleure compréhension des textes.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3>Programme Professionnel</h3>
-                    <p>Formation intensive pour ceux qui souhaitent devenir enseignants du Coran ou imams, avec diplôme à la clé.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section teachers" id="enseignants">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nos Enseignants</h2>
-            </div>
-            <div class="teacher-grid">
-                <div class="teacher-card">
-                    <div class="teacher-img">
-                        <img src="teacher1.jpg" alt="Cheikh Modou">
-                    </div>
-                    <div class="teacher-info">
-                        <h3>Cheikh Modou Ndiaye</h3>
-                        <p>Spécialiste en Tajwid et Qira'at</p>
-                        <p>20 ans d'expérience</p>
+                    <div class="flex items-center mt-2">
+                        <i class="fas fa-globe text-blue-500 mr-2"></i>
+                        <span class="font-semibold">Accessible partout</span>
                     </div>
                 </div>
-                <div class="teacher-card">
-                    <div class="teacher-img">
-                        <img src="teacher2.jpg" alt="Cheikh Abdou">
-                    </div>
-                    <div class="teacher-info">
-                        <h3>Cheikh Abdou Fall</h3>
-                        <p>Expert en Hifz (mémorisation)</p>
-                        <p>Hafiz depuis 15 ans</p>
-                    </div>
-                </div>
-                <div class="teacher-card">
-                    <div class="teacher-img">
-                        <img src="teacher3.jpg" alt="Oustada Aïcha">
-                    </div>
-                    <div class="teacher-info">
-                        <h3>Oustada Aïcha Diop</h3>
-                        <p>Spécialiste des programmes enfants</p>
-                        <p>Pédagogue certifiée</p>
-                    </div>
-                </div>
-                <div class="teacher-card">
-                    <div class="teacher-img">
-                        <img src="teacher4.jpg" alt="Cheikh Mamadou">
-                    </div>
-                    <div class="teacher-info">
-                        <h3>Cheikh Mamadou Lô</h3>
-                        <p>Expert en Tafsir et Sciences Coraniques</p>
-                        <p>Diplômé de l'Université Islamique de Médine</p>
+                <div class="md:w-1/2">
+                    <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-green-800 mb-2">Découvrez nos cours</h3>
+                            <p class="text-gray-700">Regardez cette vidéo de présentation de nos cours en ligne.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contactez-Nous</h2>
+    <!-- Courses Section -->
+    <section id="cours" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-12">Nos cours de Coran</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="h-48 bg-green-700 flex items-center justify-center">
+                        <i class="fas fa-book-quran text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">Mémorisation (Hifz)</h3>
+                        <p class="text-gray-700 mb-4">Programme complet pour mémoriser le Coran avec les règles de tajwid.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-user-graduate mr-1"></i> Tous niveaux</span>
+                            <a href="#" class="text-green-600 hover:text-green-800 font-semibold">En savoir plus →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Course 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="h-48 bg-yellow-600 flex items-center justify-center">
+                        <i class="fas fa-microphone-alt text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">Récitation (Tajwid)</h3>
+                        <p class="text-gray-700 mb-4">Apprendre les règles de récitation correcte du Coran.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-user-graduate mr-1"></i> Débutants</span>
+                            <a href="#" class="text-green-600 hover:text-green-800 font-semibold">En savoir plus →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Course 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="h-48 bg-blue-600 flex items-center justify-center">
+                        <i class="fas fa-brain text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">Compréhension (Tafsir)</h3>
+                        <p class="text-gray-700 mb-4">Étude des significations et des enseignements du Coran.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-user-graduate mr-1"></i> Avancés</span>
+                            <a href="#" class="text-green-600 hover:text-green-800 font-semibold">En savoir plus →</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="contact-form">
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label for="name">Nom Complet</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Téléphone (WhatsApp)</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="course">Cours Intéressé</label>
-                        <select id="course" name="course">
-                            <option value="">Sélectionnez un cours</option>
-                            <option value="apprentissage">Apprentissage du Coran</option>
-                            <option value="tajwid">Tajwid Perfection</option>
-                            <option value="enfants">Programme Enfants</option>
-                            <option value="tafsir">Tafsir & Sciences Coraniques</option>
-                            <option value="arabe">Coran & Langue Arabe</option>
-                            <option value="pro">Programme Professionnel</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Envoyer</button>
-                </form>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                    Voir tous les cours
+                </a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>ANSAR ALMOUYASSAR</h3>
-                    <p>Association pour l'enseignement du Coran selon les règles du Tajwid, basée à Dakar, Sénégal.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+    <!-- Schedule Section -->
+    <section id="horaires" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-12">Horaires des cours</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Monday -->
+                <div class="schedule-item bg-gray-50 border border-gray-200 rounded-lg p-6 transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 text-green-800 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                            <span class="font-bold">L</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Lundi</h3>
                     </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Liens Rapides</h3>
-                    <ul>
-                        <li><a href="#accueil">Accueil</a></li>
-                        <li><a href="#apropos">À Propos</a></li>
-                        <li><a href="#cours">Nos Cours</a></li>
-                        <li><a href="#enseignants">Enseignants</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between">
+                            <span>Matin</span>
+                            <span class="font-semibold">08:00 - 12:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Après-midi</span>
+                            <span class="font-semibold">15:00 - 18:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Soir</span>
+                            <span class="font-semibold">20:00 - 22:00</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</li>
-                        <li><i class="fas fa-phone"></i> +221 77 123 45 67</li>
-                        <li><i class="fas fa-envelope"></i> contact@ansaralmouyassar.sn</li>
-                        <li><i class="fas fa-clock"></i> Lun-Ven: 8h-18h</li>
+                
+                <!-- Wednesday -->
+                <div class="schedule-item bg-gray-50 border border-gray-200 rounded-lg p-6 transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 text-green-800 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                            <span class="font-bold">M</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Mercredi</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between">
+                            <span>Matin</span>
+                            <span class="font-semibold">08:00 - 12:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Après-midi</span>
+                            <span class="font-semibold">15:00 - 18:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Soir</span>
+                            <span class="font-semibold">20:00 - 22:00</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Friday -->
+                <div class="schedule-item bg-gray-50 border border-gray-200 rounded-lg p-6 transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 text-green-800 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                            <span class="font-bold">V</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Vendredi</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between">
+                            <span>Matin</span>
+                            <span class="font-semibold">08:00 - 12:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Après-midi</span>
+                            <span class="font-semibold">15:00 - 18:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Soir</span>
+                            <span class="font-semibold">20:00 - 22:00</span>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 ANSAR ALMOUYASSAR. Tous droits réservés.</p>
+            
+            <div class="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-info-circle text-yellow-400 text-xl"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-yellow-700">
+                            Les horaires sont donnés en heure locale de Dakar (GMT). Des sessions spéciales sont organisées pendant le Ramadan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="enseignants" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-12">Nos enseignants</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Teacher 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-user-tie text-gray-400 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-1">Cheikh Oumar Diop</h3>
+                        <p class="text-gray-500 text-sm mb-3">Spécialiste en Tajwid</p>
+                        <p class="text-gray-700 mb-4">Diplômé de l'Université Islamique de Médine avec plus de 15 ans d'expérience dans l'enseignement du Coran.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-red-500 hover:text-red-700"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Teacher 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-user-tie text-gray-400 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-1">Cheikh Ahmed Ndiaye</h3>
+                        <p class="text-gray-500 text-sm mb-3">Spécialiste en Hifz</p>
+                        <p class="text-gray-700 mb-4">Hafiz al-Qur'an formé à Dakar, enseignant la mémorisation du Coran depuis 10 ans avec une méthode éprouvée.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Teacher 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-user-tie text-gray-400 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-1">Cheikh Abdoulaye Sow</h3>
+                        <p class="text-gray-500 text-sm mb-3">Spécialiste en Tafsir</p>
+                        <p class="text-gray-700 mb-4">Docteur en études islamiques, expert en exégèse coranique et sciences du Coran.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-red-500 hover:text-red-700"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-green-800 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Témoignages</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-green-700 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-600 rounded-full w-12 h-12 flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Aminata Diallo</h4>
+                            <p class="text-green-200 text-sm">Étudiante</p>
+                        </div>
+                    </div>
+                    <p class="italic">
+                        "Grâce aux cours en ligne de Ansar Al Mouyassar, j'ai pu mémoriser 10 juz' du Coran tout en travaillant. Les enseignants sont patients et compétents."
+                    </p>
+                    <div class="flex mt-3 text-yellow-300">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-green-700 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-600 rounded-full w-12 h-12 flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Moussa Fall</h4>
+                            <p class="text-green-200 text-sm">Père de famille</p>
+                        </div>
+                    </div>
+                    <p class="italic">
+                        "Je recommande cette association à tous ceux qui veulent apprendre le Coran correctement. La flexibilité des horaires est parfaite pour moi."
+                    </p>
+                    <div class="flex mt-3 text-yellow-300">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-green-700 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-600 rounded-full w-12 h-12 flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Fatou Ndiaye</h4>
+                            <p class="text-green-200 text-sm">Étudiante</p>
+                        </div>
+                    </div>
+                    <p class="italic">
+                        "Les cours de tajwid ont totalement transformé ma récitation. Je comprends maintenant les règles que j'appliquais sans le savoir auparavant."
+                    </p>
+                    <div class="flex mt-3 text-yellow-300">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-800 mb-12">Contactez-nous</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        
+                        <div>
+                            <label for="course" class="block text-sm font-medium text-gray-700 mb-1">Cours intéressé</label>
+                            <select id="course" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                <option value="">Sélectionner un cours</option>
+                                <option value="hifz">Mémorisation (Hifz)</option>
+                                <option value="tajwid">Récitation (Tajwid)</option>
+                                <option value="tafsir">Compréhension (Tafsir)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Envoyer la demande
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 p-6 rounded-lg h-full">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">Informations de contact</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-green-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">Adresse</h4>
+                                    <p class="text-gray-700">Rue 10, Point E, Dakar, Sénégal</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt text-green-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">Téléphone</h4>
+                                    <p class="text-gray-700">+221 77 123 45 67</p>
+                                    <p class="text-gray-700">+221 33 987 65 43</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-green-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p class="text-gray-700">contact@ansaralmouyassar.sn</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-clock text-green-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">Heures d'ouverture</h4>
+                                    <p class="text-gray-700">Lundi - Vendredi: 8h00 - 18h00</p>
+                                    <p class="text-gray-700">Samedi: 9h00 - 13h00</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-semibold mb-3">Suivez-nous</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-blue-400 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-500 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-700 transition">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="bg-purple-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-purple-700 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quran Verse -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-3xl mx-auto">
+                <p class="arabic-text text-green-800 mb-6">
+                    وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِنْ مُدَّكِرٍ﴿
+                </p>
+                <p class="text-gray-700 italic">
+                    "En vérité, Nous avons rendu le Coran facile pour la méditation. Y a-t-il quelqu'un pour réfléchir?" (Sourate Al-Qamar, 54:17)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-mosque text-2xl"></i>
+                        <div>
+                            <h3 class="text-xl font-bold">Ansar Al Mouyassar</h3>
+                            <p class="text-sm">Cours de Coran en ligne - Dakar, Sénégal</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="hover:text-yellow-300 transition">Mentions légales</a>
+                        <a href="#" class="hover:text-yellow-300 transition">Politique de confidentialité</a>
+                    </div>
+                    <p class="text-sm">© 2023 Ansar Al Mouyassar. Tous droits réservés.</p>
+                </div>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Here you would normally send the form data to a server
+                // For this example, we'll just show an alert
+                alert('Merci pour votre message! Nous vous contacterons bientôt.');
+                this.reset();
+            });
+        }
+    </script>
 </body>
 </html>
+
+
+
+
+
+
